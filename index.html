@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nexa | المستقبل يبدأ الآن</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Fira+Code:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="bg-gradient"></div>
+    <div id="particles" class="particles"></div>
+
+    <main class="app-shell">
+      <section id="splash" class="screen splash active">
+        <div class="splash-card glass">
+          <h1 id="heroLine" class="hero-line"></h1>
+          <p id="subLine" class="sub-line"></p>
+          <button id="startBtn" class="btn-primary hidden">ابدأ (Start)</button>
+        </div>
+      </section>
+
+      <section id="login" class="screen login">
+        <div class="login-card glass">
+          <h2>أهلًا بك في Nexa</h2>
+          <p>اكتب اسمك وخلّينا نبدأ تجربة من المستقبل.</p>
+          <input id="nameInput" type="text" placeholder="اكتب اسمك" maxlength="40" />
+          <button id="enterBtn" class="btn-primary">دخول</button>
+        </div>
+      </section>
+
+      <section id="chatScreen" class="screen chat-screen">
+        <div id="chatLayout" class="chat-layout">
+          <aside id="codePanel" class="code-panel glass collapsed">
+            <div class="panel-header">
+              <h3>Code Preview</h3>
+              <div class="panel-actions">
+                <button id="copyCodeBtn" class="btn-secondary">Copy</button>
+                <button id="runCodeBtn" class="btn-secondary">Run</button>
+              </div>
+            </div>
+            <div class="code-language" id="codeLanguage">لغة غير محددة</div>
+            <pre><code id="codeContent"></code></pre>
+          </aside>
+
+          <section class="chat-panel glass">
+            <header class="chat-header">
+              <div>
+                <h2>Nexa</h2>
+                <p>صديقك الذكي في الكود والإبداع</p>
+              </div>
+              <span class="status-dot">● متصل</span>
+            </header>
+
+            <div id="messages" class="messages"></div>
+
+            <div id="typingIndicator" class="typing hidden">
+              <span></span><span></span><span></span>
+              <small>Nexa يكتب...</small>
+            </div>
+
+            <form id="chatForm" class="chat-input">
+              <input id="messageInput" type="text" placeholder="اكتب رسالتك..." autocomplete="off" />
+              <button type="submit" class="btn-primary">إرسال</button>
+            </form>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <audio id="clickSound" preload="auto">
+      <source src="data:audio/wav;base64,UklGRjQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YRAAAAAA/////wAA" type="audio/wav" />
+    </audio>
+
+    <script src="app.js"></script>
+  </body>
+</html>
