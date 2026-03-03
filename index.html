@@ -4,6 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Nexa | المستقبل يبدأ الآن</title>
+    <meta name="description" content="Nexa - AI Agent عربي احترافي بتجربة مستقبلية فخمة." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github-dark.min.css"
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -17,6 +28,9 @@
     <div id="particles" class="particles"></div>
 
     <main class="app-shell">
+      <section id="splash" class="screen splash active" aria-label="Splash Screen">
+        <div class="splash-card glass">
+          <div class="nexa-badge">NEXA</div>
       <section id="splash" class="screen splash active">
         <div class="splash-card glass">
           <h1 id="heroLine" class="hero-line"></h1>
@@ -25,6 +39,7 @@
         </div>
       </section>
 
+      <section id="login" class="screen login" aria-label="Login Screen">
       <section id="login" class="screen login">
         <div class="login-card glass">
           <h2>أهلًا بك في Nexa</h2>
@@ -34,6 +49,9 @@
         </div>
       </section>
 
+      <section id="chatScreen" class="screen chat-screen" aria-label="Chat Screen">
+        <div id="chatLayout" class="chat-layout">
+          <aside id="codePanel" class="code-panel glass" aria-label="Code Preview Panel">
       <section id="chatScreen" class="screen chat-screen">
         <div id="chatLayout" class="chat-layout">
           <aside id="codePanel" class="code-panel glass collapsed">
@@ -42,6 +60,12 @@
               <div class="panel-actions">
                 <button id="copyCodeBtn" class="btn-secondary">Copy</button>
                 <button id="runCodeBtn" class="btn-secondary">Run</button>
+                <button id="closeCodeBtn" class="btn-secondary">Close</button>
+              </div>
+            </div>
+            <div class="code-language" id="codeLanguage">Language: -</div>
+            <pre><code id="codeContent" class="language-plaintext"></code></pre>
+            <div id="runResult" class="run-result hidden"></div>
               </div>
             </div>
             <div class="code-language" id="codeLanguage">لغة غير محددة</div>
@@ -52,6 +76,13 @@
             <header class="chat-header">
               <div>
                 <h2>Nexa</h2>
+                <p id="modeHint">صديقك الذكي في الكود والإبداع</p>
+              </div>
+              <div class="header-controls">
+                <button id="soundToggle" class="btn-chip" aria-pressed="false">🔈 صوت</button>
+                <button id="langToggle" class="btn-chip">🌍 Auto</button>
+                <span class="status-dot">● Online</span>
+              </div>
                 <p>صديقك الذكي في الكود والإبداع</p>
               </div>
               <span class="status-dot">● متصل</span>
@@ -59,6 +90,7 @@
 
             <div id="messages" class="messages"></div>
 
+            <div id="typingIndicator" class="typing hidden" aria-live="polite">
             <div id="typingIndicator" class="typing hidden">
               <span></span><span></span><span></span>
               <small>Nexa يكتب...</small>
@@ -77,6 +109,7 @@
       <source src="data:audio/wav;base64,UklGRjQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YRAAAAAA/////wAA" type="audio/wav" />
     </audio>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
     <script src="app.js"></script>
   </body>
 </html>
