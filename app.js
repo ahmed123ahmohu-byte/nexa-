@@ -29,6 +29,11 @@ let latestCode = "";
 let latestLanguage = "plaintext";
 let soundEnabled = false;
 let forcedLanguage = "auto";
+const clickSound = document.getElementById("clickSound");
+const particles = document.getElementById("particles");
+
+let currentUser = "";
+let latestCode = "";
 
 const line1 = "نيكسا ليس مجرد عميل… بل هو المستقبل";
 const line2 = "مصنوع بفخر من طلاب عرب";
@@ -83,6 +88,7 @@ function setUIText(lang) {
 }
 
 function typeText(el, text, speed = 42) {
+function typeText(el, text, speed = 45) {
   return new Promise((resolve) => {
     let i = 0;
     const timer = setInterval(() => {
@@ -105,6 +111,8 @@ function playClick() {
 async function bootSplash() {
   await typeText(heroLine, line1, 44);
   await typeText(subLine, line2, 34);
+  await typeText(heroLine, line1, 46);
+  await typeText(subLine, line2, 35);
   startBtn.classList.remove("hidden");
 }
 
@@ -126,6 +134,10 @@ function detectCode(text) {
   if (!blockMatch) return null;
   return {
     language: (blockMatch[1] || "plaintext").toLowerCase(),
+  const blockMatch = text.match(/```(\w+)?\n([\s\S]*?)```/);
+  if (!blockMatch) return null;
+  return {
+    language: blockMatch[1] || "plain",
     code: blockMatch[2].trim(),
   };
 }
@@ -152,6 +164,11 @@ function setCodeMode(data) {
   codeContent.textContent = data.code;
   applyHighlight();
 
+    return;
+  }
+  latestCode = data.code;
+  codeLanguage.textContent = `اللغة: ${data.language}`;
+  codeContent.textContent = data.code;
   chatLayout.classList.add("split");
   codePanel.classList.add("visible");
 }
@@ -225,6 +242,26 @@ function runJavaScript(code) {
   } catch (error) {
     return { ok: false, output: String(error) };
   }
+function replyFor(text) {
+  const normalized = text.toLowerCase();
+  if (normalized.includes("debug") || normalized.includes("bug") || normalized.includes("خطأ")) {
+    return "مممم… واضح إن في Bug مستخبي هنا 😏 خليني أطلعه.";
+  }
+  if (normalized.includes("كود") || normalized.includes("code") || normalized.includes("python")) {
+    return `تمام… خليني أبنيها صح 👨‍💻\n\n\`\`\`python\ndef greet(name):\n    return f\"أهلًا {name}، جاهزين نبني حاجة عظيمة!\"\n\nprint(greet(\"${currentUser || "صديقي"}\"))\n\`\`\``;
+  }
+  return "أنا Nexa… مش مجرد AI. أنا شريكك في كل فكرة مجنونة 💡🔥\nقولّي عايز تبني إيه وأنا معاك للنهاية.";
+}
+
+function simulateReply(input) {
+  typingIndicator.classList.remove("hidden");
+  setTimeout(() => {
+    typingIndicator.classList.add("hidden");
+    const reply = replyFor(input);
+    addMessage(reply, "bot");
+    const codeData = detectCode(reply);
+    setCodeMode(codeData);
+  }, 900);
 }
 
 startBtn.addEventListener("click", () => {
@@ -248,6 +285,13 @@ enterBtn.addEventListener("click", () => {
     addMessage(t("welcome", lang, currentUser), "bot");
     addMessage(t("intro", lang), "bot");
   }, 360);
+  playClick();
+  currentUser = name;
+  switchScreen(login, chatScreen);
+  setTimeout(() => {
+    addMessage(`أهلًا يا ${currentUser} 👋\nجاهز نبدأ نصنع حاجة عظيمة؟`, "bot");
+    addMessage("أنا Nexa… مش مجرد AI. أنا شريكك في كل فكرة مجنونة 💡🔥", "bot");
+  }, 380);
 });
 
 chatForm.addEventListener("submit", (e) => {
@@ -261,6 +305,9 @@ chatForm.addEventListener("submit", (e) => {
 
   const userCode = detectCode(text);
   if (userCode) setCodeMode(userCode);
+  if (userCode) {
+    setCodeMode(userCode);
+  }
 
   simulateReply(text);
 });
@@ -335,3 +382,21 @@ if (savedUser) {
 } else {
   bootSplash();
 }
+  copyCodeBtn.textContent = "Copied!";
+  setTimeout(() => (copyCodeBtn.textContent = "Copy"), 1000);
+});
+
+runCodeBtn.addEventListener("click", () => {
+  addMessage("التشغيل المباشر قيد التفعيل قريبًا ⚡", "bot");
+});
+
+for (let i = 0; i < 36; i += 1) {
+  const p = document.createElement("span");
+  p.className = "particle";
+  p.style.left = `${Math.random() * 100}%`;
+  p.style.animationDuration = `${8 + Math.random() * 8}s`;
+  p.style.animationDelay = `${Math.random() * 7}s`;
+  particles.appendChild(p);
+}
+
+bootSplash();

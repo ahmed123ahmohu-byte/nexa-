@@ -15,6 +15,12 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github-dark.min.css"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Fira+Code:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -25,6 +31,8 @@
       <section id="splash" class="screen splash active" aria-label="Splash Screen">
         <div class="splash-card glass">
           <div class="nexa-badge">NEXA</div>
+      <section id="splash" class="screen splash active">
+        <div class="splash-card glass">
           <h1 id="heroLine" class="hero-line"></h1>
           <p id="subLine" class="sub-line"></p>
           <button id="startBtn" class="btn-primary hidden">ابدأ (Start)</button>
@@ -32,6 +40,7 @@
       </section>
 
       <section id="login" class="screen login" aria-label="Login Screen">
+      <section id="login" class="screen login">
         <div class="login-card glass">
           <h2>أهلًا بك في Nexa</h2>
           <p>اكتب اسمك وخلّينا نبدأ تجربة من المستقبل.</p>
@@ -43,6 +52,9 @@
       <section id="chatScreen" class="screen chat-screen" aria-label="Chat Screen">
         <div id="chatLayout" class="chat-layout">
           <aside id="codePanel" class="code-panel glass" aria-label="Code Preview Panel">
+      <section id="chatScreen" class="screen chat-screen">
+        <div id="chatLayout" class="chat-layout">
+          <aside id="codePanel" class="code-panel glass collapsed">
             <div class="panel-header">
               <h3>Code Preview</h3>
               <div class="panel-actions">
@@ -54,6 +66,10 @@
             <div class="code-language" id="codeLanguage">Language: -</div>
             <pre><code id="codeContent" class="language-plaintext"></code></pre>
             <div id="runResult" class="run-result hidden"></div>
+              </div>
+            </div>
+            <div class="code-language" id="codeLanguage">لغة غير محددة</div>
+            <pre><code id="codeContent"></code></pre>
           </aside>
 
           <section class="chat-panel glass">
@@ -67,11 +83,15 @@
                 <button id="langToggle" class="btn-chip">🌍 Auto</button>
                 <span class="status-dot">● Online</span>
               </div>
+                <p>صديقك الذكي في الكود والإبداع</p>
+              </div>
+              <span class="status-dot">● متصل</span>
             </header>
 
             <div id="messages" class="messages"></div>
 
             <div id="typingIndicator" class="typing hidden" aria-live="polite">
+            <div id="typingIndicator" class="typing hidden">
               <span></span><span></span><span></span>
               <small>Nexa يكتب...</small>
             </div>
